@@ -23,13 +23,24 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+// +kubebuilder:validation:Optional
 // MyNginxOperatorSpec defines the desired state of MyNginxOperator
 type MyNginxOperatorSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of MyNginxOperator. Edit mynginxoperator_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	//	Foo string `json:"foo,omitempty"`
+
+	// Port is the port number to expose on the Nginx Pod
+	Port *int32 `json:"port,omitempty"`
+
+	// Replicas is the number of deployment replicas to scale
+	Replicas *int32 `json:"replicas,omitempty"`
+
+	// ForceRedploy is any string, modifying this field
+	// instructs the Operator to redeploy the Operand
+	ForceRedploy string `json:"forceRedploy,omit"`
 }
 
 // MyNginxOperatorStatus defines the observed state of MyNginxOperator
